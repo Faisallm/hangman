@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    /* border and padding will be included in the total width
+    and height of the element. */
+    box-sizing: border-box;
+    font-family: "Open sans", sans-serif;
+}
+
+body {
+    /* inorder to center the container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 100% view height */
+    min-height: 100vh;
+    background: #5E63BA;
+}
+
+.container {
+    width: 850px;
+    background: #fff;
+    /* default flex direction is horizontal */
+    display: flex;
+}
