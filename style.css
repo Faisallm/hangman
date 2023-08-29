@@ -21,6 +21,54 @@ body {
 .container {
     width: 850px;
     background: #fff;
-    /* default flex direction is horizontal */
+    /* gap between hangman-box and
+    game-box */
+    gap: 70px;
+    /* default flex-direction is horizontal */
     display: flex;
+    /* top&bottom is 60px
+    left&right is 40px */
+    padding: 60px 40px;
+    border-radius: 10px;
+}
+
+.hangman-box img {
+    width: 270px;
+}
+
+.hangman-box h1 {
+    font-size: 1.45rem;
+    margin-top: 20px;
+    text-align: center;
+    /* toUpperCase() */
+    text-transform: uppercase;
+}
+
+.word-display {
+    /* default flex-direction is horizontal */
+    display: flex;
+    /* remove all bullet points */
+    list-style: none;
+    /* gap between rows and columns */
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.word-display .letter {
+    width: 28px;
+    border-bottom: 3px solid #000;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.word-display .letter.guessed {
+    border-color: transparent;
+    /* top: -40px
+    left&right is 0px
+    bottom is 35px */
+    margin: -40px 0 35px;
 }
