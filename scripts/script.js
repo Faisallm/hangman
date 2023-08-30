@@ -6,11 +6,25 @@ const keyboardDiv = document.querySelector(".keyboard");
 const wordDisplay = document.querySelector(".word-display");
 const guessesText = document.querySelector(".guesses-text b");
 const gameModal = document.querySelector(".game-modal");
+const playAgainBtn = document.querySelector(".play-again");
 
 let currentWord,
   correctLetters = [],
   wrongGuessCount = 0;
 maxGuesses = 6;
+
+const resetGame = () => {
+  correctLetters = [];
+  wrongGuessCount = 0;
+  hangmanImage.src = `images/hangman-${wrongGuessCount}.svg`;
+  guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
+  keyboardDiv.querySelectorAll("button").forEach(btn => btn.disabled = false);
+  wordDisplay.innerHTML = currentWord
+    .split("")
+    .map(() => `<li class="letter"></li>`)
+    .join("");
+  gameModal.classList.remove("show");
+};
 
 const getRandomWord = () => {
   // object destructuring
@@ -20,6 +34,7 @@ const getRandomWord = () => {
   document.querySelector(".hint-text b").innerText = hint;
   // split(): converts a string to an array.
   // join(): converts an array to a string.
+  resetGame();
   wordDisplay.innerHTML = word
     .split("")
     .map(() => `<li class="letter"></li>`)
@@ -28,10 +43,18 @@ const getRandomWord = () => {
 
 const gameOver = (isVictory) => {
   setTimeout(() => {
-    const modalText = isVictory ? `You found the word:` : `The correct word was:`;
-    gameModal.querySelector("img").src = `images/${isVictory ? "victory" : "lost"}.gif`;
-    gameModal.querySelector("h4").innerText = `${isVictory ? "Congrats!" : "Game Over!"}`;
-    gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`;
+    const modalText = isVictory
+      ? `You found the word:`
+      : `The correct word was:`;
+    gameModal.querySelector("img").src = `images/${
+      isVictory ? "victory" : "lost"
+    }.gif`;
+    gameModal.querySelector("h4").innerText = `${
+      isVictory ? "Congrats!" : "Game Over!"
+    }`;
+    gameModal.querySelector(
+      "p"
+    ).innerHTML = `${modalText} <b>${currentWord}</b>`;
     gameModal.classList.add("show");
   }, 300);
 };
@@ -77,3 +100,5 @@ for (let i = 97; i <= 122; i++) {
 // creating a word list
 
 getRandomWord();
+
+playAgainBtn.addEventListener("click", getRandomWord);
